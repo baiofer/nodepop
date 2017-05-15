@@ -8,7 +8,8 @@ const Usuario = require('../../models/Usuario');
 //GET /apiv1/usuarios
 router.get('/', function(req, res, next) {
 
-    Usuario.find().exec( (err, usuarios) => {
+    //Usuario.list(filter, limit, skip, fields, sort, (err, usuarios) => {
+    Usuario.list(null, null, null, null, null, (err, usuarios) => {
         if (err) {
             next(err); //Le decimos a express que devuelva el error
             return;

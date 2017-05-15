@@ -10,7 +10,17 @@ const anuncioSchema = mongoose.Schema({
     foto: String,
     usuario: String,
     tags: []
-})
+});
+
+//Creamos un método estático
+anuncioSchema.statics.list = function(filter, limit, skip, fields, sort, callback) {
+    const query = Anuncio.find(filter);
+    query.limit(limit);
+    query.skip(skip);
+    query.select(fields);
+    query.sort(sort);
+    query.exec(callback);
+};
 
 //Creamos el modelo de Anuncio
 var Anuncio = mongoose.model('Anuncio', anuncioSchema);

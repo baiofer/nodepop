@@ -9,6 +9,16 @@ const usuarioSchema = mongoose.Schema({
     password: String
 })
 
+//Creamos un método estático
+usuarioSchema.statics.list = function(filter, limit, skip, fields, sort, callback) {
+    const query = Usuario.find(filter);
+    query.limit(limit);
+    query.skip(skip);
+    query.select(fields);
+    query.sort(sort);
+    query.exec(callback);
+};
+
 //Creamos el modelo de Usuario
 var Usuario = mongoose.model('Usuario', usuarioSchema);
 

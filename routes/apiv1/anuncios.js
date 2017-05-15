@@ -4,12 +4,12 @@ var express = require('express');
 var router = express.Router();
 
 const Anuncio = require('../../models/Anuncio');
-const Usuario = require('../../models/Usuario');
 
-//GET /apiv1/anuncios 
+//GET /apiv1/anuncios (LISTAR)
 router.get('/', function(req, res, next) {
 
-    Anuncio.find().exec( (err, anuncios) => {
+    //Anuncio.list(filter, limit, skip, fields, sort, (err, anuncios) => {
+    Anuncio.list(null, null, null, null, null, (err, anuncios) => {
         if (err) {
             next(err); //Le decimos a express que devuelva el error
             return;
@@ -19,14 +19,13 @@ router.get('/', function(req, res, next) {
 });
 
 /*
-//Petición para crear un agente POST /apiv1/agentes
+//POST /apiv1/anuncios  (CREAR)
 router.post('/', (req, res, next) => {
-    console.log(req.body);
+    //Validaciones
 
-    //Aqui podriamos hacer las validaciones que quisiesemos
-    //antes de crear el agente
+    
 
-    //creamos un objeto tipo agente
+    //Creamos un objeto tipo agente
     const agente = new Agente(req.body);
     //Lo guardamos en la base de datos (lo persistimos)
     agente.save((err, agenteGuardado) => {
@@ -37,8 +36,12 @@ router.post('/', (req, res, next) => {
         res.json({succes: true, result: agenteGuardado});
     });
 });
-*/
 
+//POST /apiv1/usuarios/anuncios   (BORRAR)
+router.post('/', (req, res, next) => {
+    Console.log('Borrado de artículo');
+});
+*/
 
 
 module.exports = router;
