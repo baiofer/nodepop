@@ -1,0 +1,15 @@
+{
+  "name": "install_db",
+  "version": "1.0.0",
+  "description": "Script de inicialización de Base de Datos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Fernando Jarilla",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2",
+    "mongoose": "^4.9.9"
+  }
+}

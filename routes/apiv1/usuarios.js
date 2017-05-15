@@ -3,20 +3,20 @@
 var express = require('express');
 var router = express.Router();
 
-const Anuncio = require('../../models/Anuncio');
 const Usuario = require('../../models/Usuario');
 
-//GET /apiv1/anuncios 
+//GET /apiv1/usuarios
 router.get('/', function(req, res, next) {
 
-    Anuncio.find().exec( (err, anuncios) => {
+    Usuario.find().exec( (err, usuarios) => {
         if (err) {
             next(err); //Le decimos a express que devuelva el error
             return;
         }
-        res.json({succes: true, result: anuncios });
+        res.json({succes: true, result: usuarios });
     })
 });
+
 
 /*
 //Petición para crear un agente POST /apiv1/agentes
