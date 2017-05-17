@@ -14,7 +14,7 @@ La URL base de esta API es http://localhost:3000
 
 **Usuarios**
     Lista de usuarios
-        GET /apiv1/usuarios
+        GET /apiv1/usuarios?filtro
     Buscar un usuario
         GET /apiv1/usuarios?nombre='nombre'
     Crear un usuario
@@ -25,24 +25,21 @@ La URL base de esta API es http://localhost:3000
         DELETE /apiv1/usuarios?nombre='nombre
 
 **Anuncios**
-    Lista de anuncios total
-        GET /apiv1/anuncios
-    Lista de anuncios por articulo
-        GET /apiv1/anumcios/nombre='nombre'
-    Lista de anuncios por venta
-        GET /apiv1/anuncios/venta='true/false'
-    Lista de anuncios por precio
-        GET /apiv1/anuncios?precio1='precio&precio2='precio'
-    Lista de anuncios por tag
-        GET /apiv1/anuncios?tag='tag'
-    Lista de anuncios por usuario
-        GET /apiv1/anuncios?usuario='usuario'
-    Buscar un anuncio
-        GET /apiv1/anuncios?_id='id'
+    Lista de anuncios
+        GET /apiv1/anuncios?filtro&
+    	El filtro podrá ser:
+    		id:<id del anuncio> será numérico
+    		articulo=<nombre del artículo>, en mayúsculas o minúsculas
+    		venta=<true/false>, en mayúsculas o minúsculas
+    		precio=<rango inferior, rango superior>, un rango de dos precios, separados por el crácter <,>. Primero el precio mas bajo y segundo el mas alto
+    		foto=<nombre del fichero de la foto sin extension>, en mayúsculas o minúsculas
+    		tag=<tag>, en mayusculas o minusculas
+    		usuario=<usuario>, en mayusculas o minusculas.
+            limit=<numero de registros a recibir>, será numérico
+            skip=<cantidad de registros que salto>, será numérico
+            Se permite cualquier combinación de ellos y se encadenan con el caracter <&>
     Crear un anuncio
         PUT /apiv1/anuncios?articulo='articulo'&venta='true/false'&precio='precio'&foto='foto'&usuario='usuario'&tags=['tags]
-    Actualizar un anuncio
-        UPDATE /apiv1/anuncios?_id='id'
     Borrar un anuncio
         DELETE /apiv1/anuncios?_id='id'
 

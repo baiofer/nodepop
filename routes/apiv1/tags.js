@@ -3,30 +3,11 @@
 var express = require('express');
 var router = express.Router();
 
-const Usuario = require('../../models/Usuario');
+const Tag = require('../../models/Tag');
 
-//GET /apiv1/usuarios
+//GET /apiv1/tags
 router.get('/', function(req, res, next) {
-    //Recuperamos la llamada, para saber los filtros que debo aplicar y pasar al list
-    //Creo el filtro vacio
-    const filter = {};
-    //Añado al filtro los distintos campos que lleguen
-    let id = req.query.id;
-    if (id) {
-        filter._id = id;
-    }
-    const nombre = req.query.nombre;  //is case sensitive
-    if (nombre) {
-        filter.nombre = nombre;
-    }
-    const email = req.query.email;    //is case sensitive
-    if (email) {
-        filter.email = email;
-    }
-    const password = req.query.password;  //is case sensitive
-    if (password) {
-        filter.password = password;
-    }
+    //El filtro no le paso. Siempre enviaré el total de tags
     //Obtengo el total de registros a devolver en la consulta
     const limit = parseInt(req.query.limit);
     //Obtengo los registros que me saltaré antes de enviar los solicitados
@@ -46,12 +27,12 @@ router.get('/', function(req, res, next) {
         sort = '_id';
     }
     //Ejecuto la consulta
-    Usuario.list(filter, limit, skip, fields, sort, (err, usuarios) => {
+    Tag.list(null, limit, skip, fields, sort, (err, tags) => {
         if (err) {
             next(err); //Le decimos a express que devuelva el error
             return;
         }
-        res.json({succes: true, result: usuarios });
+        res.json({succes: true, result: tags });
     });
 });
 

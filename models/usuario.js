@@ -7,7 +7,7 @@ const usuarioSchema = mongoose.Schema({
     nombre: String,
     email: String,
     password: String
-})
+});
 
 //Creamos un método estático
 usuarioSchema.statics.list = function(filter, limit, skip, fields, sort, callback) {

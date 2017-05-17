@@ -9,7 +9,7 @@ const anuncioSchema = mongoose.Schema({
     precio: Number,
     foto: String,
     usuario: String,
-    tags: []
+    tags: [String]
 });
 
 //Creamos un método estático
@@ -17,7 +17,7 @@ anuncioSchema.statics.list = function(filter, limit, skip, fields, sort, callbac
     const query = Anuncio.find(filter);
     query.limit(limit);
     query.skip(skip);
-    query.select(fields);
+    query.select(fields);  //{nombredecampo: 1 campoquenoquiero:0}
     query.sort(sort);
     query.exec(callback);
 };
