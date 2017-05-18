@@ -5,6 +5,9 @@ var router = express.Router();
 
 const Anuncio = require('../../models/Anuncio');
 
+//MIDDLEWARE DE AUTENTICACION
+const basicAuth = require('../../lib/autorizacion.js');
+router.use(basicAuth); 
 
 //UTILIDADES
 
@@ -64,6 +67,19 @@ function obtenerFiltro(req) {
 }
 
 //METODOS DE LLAMADAS A LA API
+
+//DELETE /apiv1/anuncios  (BORRAR)
+router.delete('/:id', (req, res, next) => {
+    //Lo borramos de la base de datos (lo persistimos)
+    Anuncio.remove({ _id: req.params.id },(err, anuncioBorrado) => {
+        if (err) {
+            //next(err);
+            return res.json({result: false, error: err});
+        }
+        res.json({succes: true, result: anuncioBorrado});
+    });
+});
+
 
 //POST /apiv1/anuncios  (CREAR)
 router.post('/', (req, res, next) => {
@@ -132,17 +148,7 @@ router.put('/:id', (req, res, next) => {
     });
 });
 
-//DELETE /apiv1/anuncios  (BORRAR)
-router.delete('/:id', (req, res, next) => {
-    //Lo borramos de la base de datos (lo persistimos)
-    Anuncio.remove({ _id: req.params.id },(err, anuncioBorrado) => {
-        if (err) {
-            //next(err);
-            return res.json({result: false, error: err});
-        }
-        res.json({succes: true, result: anuncioBorrado});
-    });
-});
+
 
 
 module.exports = router;

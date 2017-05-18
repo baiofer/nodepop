@@ -5,6 +5,10 @@ var router = express.Router();
 
 const Usuario = require('../../models/Usuario');
 
+//MIDDLEWARE DE AUTENTICACION
+const basicAuth = require('../../lib/autorizacion.js');
+router.use(basicAuth); 
+
 //POST /apiv1/usuarios  (CREAR)
 router.post('/', (req, res, next) => {
     //Creamos un objeto tipo agente
