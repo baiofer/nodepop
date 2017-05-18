@@ -5,7 +5,7 @@ var router = express.Router();
 
 const Tag = require('../../models/Tag');
 
-//GET /apiv1/tags
+//GET /apiv1/tags  (LISTAR)
 router.get('/', function(req, res, next) {
     //El filtro no le paso. Siempre enviaré el total de tags
     //Obtengo el total de registros a devolver en la consulta
@@ -36,28 +36,43 @@ router.get('/', function(req, res, next) {
     });
 });
 
-
-/*
-//Petición para crear un agente POST /apiv1/agentes
+//POST /apiv1/tags  (CREAR)
 router.post('/', (req, res, next) => {
-    console.log(req.body);
-
-    //Aqui podriamos hacer las validaciones que quisiesemos
-    //antes de crear el agente
-
-    //creamos un objeto tipo agente
-    const agente = new Agente(req.body);
+    //Creamos un objeto tipo agente
+    const tag = new Tag(req.body);
     //Lo guardamos en la base de datos (lo persistimos)
-    agente.save((err, agenteGuardado) => {
+    tag.save((err, tagGuardado) => {
         if (err) {
-            next(err);
-            return;
+            //next(err);
+            return res.json({result: false, error: err});
         }
-        res.json({succes: true, result: agenteGuardado});
+        res.json({succes: true, result: tagGuardado});
     });
 });
-*/
 
+//PUT /apiv1/tags  (MODIFICAR)
+router.put('/:_id', (req, res, next) => {
+    let opciones = {};
+    //Lo guardamos en la base de datos (lo persistimos)
+    Tag.update({ _id: req.params.id }, req.body, (err, tagModificado) => {
+        if (err) {
+            //next(err);
+            return res.json({result: false, error: err});
+        }
+        res.json({succes: true, result: tagModificado});
+    });
+});
 
+//DELETE /apiv1/tags  (BORRAR)
+router.delete('/:id', (req, res, next) => {
+    //Lo borramos de la base de datos (lo persistimos)
+    Tag.remove({ _id: req.params.id },(err, tagBorrado) => {
+        if (err) {
+            //next(err);
+            return res.json({result: false, error: err});
+        }
+        res.json({succes: true, result: tagBorrado});
+    });
+});
 
 module.exports = router;

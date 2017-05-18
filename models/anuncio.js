@@ -4,12 +4,27 @@ const mongoose = require('mongoose');
 
 //Definimos un esquema de Anuncio
 const anuncioSchema = mongoose.Schema({
-    articulo: String,
-    venta: Boolean,
-    precio: Number,
+    articulo: {
+        type: String,
+        index: 'text',
+    },
+    venta: {
+        type: Boolean,
+        index: true
+    },
+    precio: {
+        type: Number,
+        index: true
+    },
     foto: String,
-    usuario: String,
-    tags: [String]
+    usuario: {
+        type: String,
+        index: true
+    },
+    tags: {
+        type: [String],
+        index: true
+    }
 });
 
 //Creamos un método estático
