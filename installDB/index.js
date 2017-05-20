@@ -99,7 +99,7 @@ promesa.then(() => {
     anuncio1.precio = 387;
     anuncio1.foto = '../nodepop/public/images/anuncio1.png';
     anuncio1.usuario = 'fernando';
-    anuncio1.tag = 'mobile';
+    anuncio1.tags = 'mobile';
 
     anuncio1.save((err, anuncio1) => {
         if (err) {
@@ -115,7 +115,7 @@ promesa.then(() => {
     anuncio2.precio = 18327;
     anuncio2.foto = '../nodepop/public/images/anuncio2.png';
     anuncio2.usuario = 'fernando';
-    anuncio2.tag = 'motor';
+    anuncio2.tags = 'motor';
 
     anuncio2.save((err, anuncio2) => {
         if (err) {
@@ -131,7 +131,7 @@ promesa.then(() => {
     anuncio3.precio = 50;
     anuncio3.foto = '../nodepop/public/images/anuncio3.png';
     anuncio3.usuario = 'fernando';
-    anuncio3.tag = 'lifestyle';
+    anuncio3.tags = 'lifestyle';
 
     anuncio3.save((err, anuncio3) => {
         if (err) {

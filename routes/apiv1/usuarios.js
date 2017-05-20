@@ -1,30 +1,18 @@
 "use strict";
 
-var express = require('express');
-var router = express.Router();
-
+const express = require('express');
+const router = express.Router();
 const Usuario = require('../../models/Usuario');
+const customError = require('../../lib/customError');
 
 //MIDDLEWARE DE AUTENTICACION
 const basicAuth = require('../../lib/autorizacion.js');
 router.use(basicAuth); 
 
-//POST /apiv1/usuarios  (CREAR)
-router.post('/', (req, res, next) => {
-    //Creamos un objeto tipo agente
-    const usuario = new Usuario(req.body);
-    //Lo guardamos en la base de datos (lo persistimos)
-    usuario.save((err, usuarioGuardado) => {
-        if (err) {
-            //next(err);
-            return res.json({result: false, error: err});
-        }
-        res.json({succes: true, result: usuarioGuardado});
-    });
-});
-
 //GET /apiv1/usuarios (LISTAR)
 router.get('/', function(req, res, next) {
+    //Cojo el idioma
+    const idioma = req.query.lang;
     //Recuperamos la llamada, para saber los filtros que debo aplicar y pasar al list
     //Creo el filtro vacio
     const filter = {};
@@ -69,32 +57,81 @@ router.get('/', function(req, res, next) {
             next(err); //Le decimos a express que devuelva el error
             return;
         }
-        res.json({succes: true, result: usuarios });
+        if (!usuarios[0]) {
+            const mensaje = customError("No users", 409, idioma);
+            res.json(mensaje);
+        } else {
+            res.json({succes: true, result: usuarios });
+        }
+    });
+});
+
+//POST /apiv1/usuarios  (CREAR)
+router.post('/', (req, res, next) => {
+    //Cojo el idioma
+    const idioma = req.query.lang;
+    //Creamos un objeto tipo usuario
+    const usuario = new Usuario(req.body);
+    if (!usuario.nombre) {
+        const mensaje = customError("Missing 'nombre'", 409, idioma);
+        res.json(mensaje);
+        return;
+    }
+    if (!usuario.email) {
+        const mensaje = customError("Missing 'email'", 409, idioma);
+        res.json(mensaje);
+        return;
+    }
+    if (!usuario.password) {
+        const mensaje = customError("Missing 'password'", 409, idioma);
+        res.json(mensaje);
+        return;
+    }
+    //Lo guardamos en la base de datos (lo persistimos)
+    usuario.save((err, usuarioGuardado) => {
+        if (err) {
+            next(err);
+            return;
+        }
+        res.json({succes: true, result: usuarioGuardado});
     });
 });
 
 //PUT /apiv1/usuarios  (MODIFICAR)
-router.put('/:id', (req, res, next) => {
-    let id = req.params.id;
-
+router.put('/', (req, res, next) => {
+    //Cojo el idioma
+    const idioma = req.query.lang;
+    let id = req.body.id;
+    if (!id) {
+        const mensaje = customError("Missing 'id'", 409, idioma);
+        res.json(mensaje);
+        return;
+    }
     Usuario.update({ _id: id }, req.body, (err, usuarioModificado) => {
         if (err) {
-            return next(err);
+            next(err);
+            return;
         }
         // Se devuelve el registro indicando que ha ido correctamente
-        res.json({ succes: true, result: usuarioModificado });
+        res.json({ succes: true, result: 'Modificado ' + id });
     });
 });
 
 //DELETE /apiv1/usuarios  (BORRAR)
-router.delete('/:id', (req, res, next) => {
+router.delete('/', (req, res, next) => {
+    const id = req.body.id;
+    if (!id) {
+        const mensaje = customError("Missing 'id'", 409, idioma);
+        res.json(mensaje);
+        return;
+    }
     //Lo borramos de la base de datos (lo persistimos)
-    Usuario.remove({ _id: req.params.id },(err, usuarioBorrado) => {
+    Usuario.remove({ _id: id },(err, usuarioBorrado) => {
         if (err) {
-            //next(err);
-            return res.json({result: false, error: err});
+            next(err);
+            return;
         }
-        res.json({succes: true, result: usuarioBorrado});
+        res.json({succes: true, result: 'Borrado ' + id});
     });
 });
 

@@ -4,7 +4,11 @@ const mongoose = require('mongoose');
 
 //Definimos un esquema de Tags
 const tagSchema = mongoose.Schema ({
-    etiqueta: String
+    etiqueta: {
+        type: String,
+        index: true,
+        unique:true
+    }
 });
 
 //Creamos un método estático

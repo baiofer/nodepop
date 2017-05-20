@@ -25,10 +25,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Rutas de nuestra aplicación
-app.use('/apiv1/anuncios', require('./routes/apiv1/anuncios'));
-app.use('/apiv1/usuarios', require('./routes/apiv1/usuarios'));
-app.use('/apiv1/tags',     require('./routes/apiv1/tags'));
-app.use('/',               require('./routes/index'));
+app.use('/',                require('./routes/index'));
+app.use('/apiv1/anuncios',  require('./routes/apiv1/anuncios'));
+app.use('/apiv1/usuarios',  require('./routes/apiv1/usuarios'));
+app.use('/apiv1/tags',      require('./routes/apiv1/tags'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -43,6 +43,7 @@ app.use(function(err, req, res, next) {
   // if is API, send json with error
   if (isAPI(req)) {
     res.json({success: false, error: err.message});
+    return;
   }
   // set locals, only providing error in development
   res.locals.message = err.message;

@@ -7,6 +7,7 @@ const anuncioSchema = mongoose.Schema({
     articulo: {
         type: String,
         index: 'text',
+        unique: true
     },
     venta: {
         type: Boolean,
@@ -19,7 +20,8 @@ const anuncioSchema = mongoose.Schema({
     foto: String,
     usuario: {
         type: String,
-        index: true
+        index: true,
+        unique: true
     },
     tags: {
         type: [String],

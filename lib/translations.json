@@ -1,0 +1,44 @@
+{
+    "The 'venta' value is not Boolean":{
+        "es": "El valor de 'venta' no es Booleano"
+    },
+    "The 'precio' value is not a number":{
+        "es": "El valor del 'precio' no es numérico"
+    },
+    "No ads":{
+        "es": "No hay anuncios"
+    },
+    "Missing 'articulo' in ad":{
+        "es": "Falta el 'articulo' en el anuncio"
+    },
+    "Missing 'venta' in ad":{
+        "es": "Falta el tipo de 'venta' en el anuncio"
+    },
+    "Missing 'precio' in ad":{
+        "es": "Falta el 'precio' en el anuncio"
+    },
+    "Missing 'usuario' in ad":{
+        "es": "Falta el 'usuario' en el anuncio"
+    },
+    "Missing 'id'":{
+        "es": "Falta el 'id'"
+    },
+    "Missing 'etiqueta'":{
+        "en": "Falta la 'etiqueta'"
+    },
+    "No tags":{
+        "en": "No hay tags"
+    },
+    "No users":{
+        "en": "No hay usuarios"
+    },
+    "Missing 'nombre'":{
+        "en": "Falta el nombre en el usuario"
+    },
+    "Missing 'email'":{
+        "en": "Falta el email en el usuario"
+    },
+    "Missing 'password'":{
+        "en": "Falta el password en el usuario"
+    }
+}
