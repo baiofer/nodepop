@@ -23,8 +23,8 @@ const anuncioSchema = mongoose.Schema({
         index: true,
         unique: true
     },
-    tags: {
-        type: [String],
+    tag: {
+        type: String,
         index: true
     }
 });

@@ -13,7 +13,7 @@ router1.use(basicAuth);
 
 function obtenerFiltro(req) {
     //Cojo el idioma
-    const idioma = req.query.lang;
+    const idioma = (req.query.lang) || (req.body.lang);
     //Recuperamos la llamada, para saber los filtros que debo aplicar y pasar al list
     //Creo el filtro vacio
     const filter1 = {};
@@ -26,10 +26,10 @@ function obtenerFiltro(req) {
     if (articulo) {
         //Admito el nombre en mayúsculas o minúsculas y permito mas de un articulo
         articulo = articulo.split(',');
-        for(let i=0; i<articulo.lenght; i++) {
+        for(let i=0; i<articulo.length; i++) {
             articulo[i] = articulo[i].toLowerCase();
         }
-        filter1.articulo = articulo;
+        filter1.articulo = new RegExp('^'+articulo, 'i');
     }
     let venta = req.query.venta;
     if (venta) {
@@ -46,7 +46,7 @@ function obtenerFiltro(req) {
         //Saco los dos precios de la cadena
         const rangoPrecio = precio.split("-");
         console.log(typeof parseInt(rangoPrecio[0]));
-        if (parseInt(rangoPrecio[0]) > 0 && parseInt(rangoPrecio[1]) > 0 ) {
+        if ((parseInt(rangoPrecio[0]) > 0 || (rangoPrecio[0] === ''))&& (parseInt(rangoPrecio[1]) > 0 || rangoPrecio[1] === '')) {
             if (rangoPrecio[0] === '') {
                 filter1.precio = {$lt:parseInt(rangoPrecio[1])};
             } else if (rangoPrecio[1] === '') {
@@ -70,7 +70,7 @@ function obtenerFiltro(req) {
     if (tag) {
         //Se admiten mayusculas o minusculas y mas de un tag
         tag = tag.split(',');
-        for (let i=0; i<tag.lenght; i++) {
+        for (let i=0; i<tag.length; i++) {
             tag[i] = tag[i].toLowerCase();
         }
         filter1.tag = tag;

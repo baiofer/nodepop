@@ -97,13 +97,13 @@
 
    ### Obligatorios: ###
    
-   Tanto para anuncios, como usuarios como tags, en las operaciones de modificación ('PUT') y borrado ('DELETE')_>
+   Tanto para anuncios, como usuarios como tags, en las operaciones de modificación `PUT` y borrado `DELETE`
 
    **id** = *[integer]*
 
    ### Opcionales: ###
  
-   **Para anuncios**
+   #### Para anuncios ####
    
    **id** = *Number*
 
@@ -119,7 +119,7 @@
 
    **usuario** = *String*
 
-   **Para usuarios**
+   #### Para usuarios ####
 
    **id** = *Number*
 
@@ -129,7 +129,7 @@
 
    **password** = *String*
 
-   **Para tags**
+   #### Para tags ####
 
    **id** = *Number*
 
