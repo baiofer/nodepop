@@ -155,7 +155,19 @@
 
   para instalar las dependencias.
 
-  A continuación, se crea la base de datos de arranque
+  A continuación, se crea la base de datos de arranque, teniendo previamente abierto MongoDB. Para ello, vamos al directorio **installDB**
+
+  `$ cd installDB``
+
+  y una vez aquí, instalamos las dependencias de la aplicación
+
+  `$ npm install`
+
+  Con las dependencias instaladas, colvemos al directorio raiz de la aplicación
+
+  `$ cd ..`
+
+  y ya desde aquí, lanzamos la creaccion de la base de datos con registros incluidos.
 
   `$ npm run installDB`
 
