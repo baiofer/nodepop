@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-const Tag = require('../../models/Tag');
+const Tag = require('../../models/tag');
 const mongoose = require('mongoose');
 const customError = require('../../lib/customError');
 

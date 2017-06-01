@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-const Usuario = require('../../models/Usuario');
+const Usuario = require('../../models/usuario');
 const customError = require('../../lib/customError');
 
 //MIDDLEWARE DE AUTENTICACION

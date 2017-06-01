@@ -8,9 +8,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 require('./lib/connectDB');
-require('./models/Anuncio');
-require('./models/Usuario');
-require('./models/Tag');
+require('./models/anuncio');
+require('./models/usuario');
+require('./models/tag');
 
 var app = express();
 
