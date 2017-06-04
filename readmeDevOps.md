@@ -11,5 +11,5 @@ Los archivos estáticos se servirán en la URL: `http://nodepop.jarzasa.com/imag
 
 ## Ejercicio 2
 
-URL de acceso: `https://jarzasa.com`, `https://www.jarzasa.com`, `https://34.198.183.157``
+URL de acceso: `https://jarzasa.com`, `https://www.jarzasa.com`, `https://34.198.183.157`
 
