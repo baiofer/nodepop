@@ -13,7 +13,7 @@ mongoose.connection.on('error', err => {
 mongoose.connection.once('open', () => {
     console.log('Conectado a mongodb');
 });
-mongoose.connect('mongodb://localhost/nodepopBD');
+mongoose.connect('mongodb://nodepop:nodepopfj@localhost/nodepopBD');
 
 //Borramos la base de datos
 function borrado() {
