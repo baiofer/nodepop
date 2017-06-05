@@ -1,10 +1,12 @@
 # NODEPOP API V1.0.0 #
 ----
-  Esta API permite el manejo de una base de datos de anuncios y usuarios para la elaboración de aplicaciones de compra / venta de artículos
+  Esta API permite el manejo de una base de datos de anuncios y usuarios para la elaboración de aplicaciones de compra / venta de artículos.
+
+  Ver readmeDevOps para información relativa al despliegue en el server AWS.
 
 * ## URL ##
 
-  La URL base de esta API es:    `http://localhost:3000/`
+  La URL base de esta API es:    `http://localhost:3100/`
 
 * ## Métodos: ##
   
@@ -155,9 +157,9 @@
 
   para instalar las dependencias.
 
-  A continuación, se crea la base de datos de arranque, teniendo previamente abierto MongoDB. Para ello, vamos al directorio **installDB**
+  A continuación, se crea la base de datos de arranque, teniendo previamente abierto MongoDB. Para ello, vamos al directorio **installDB**. La base de datos tiene el acceso securizado.
 
-  `$ cd installDB``
+  `$ cd installDB`
 
   y una vez aquí, instalamos las dependencias de la aplicación
 
@@ -176,6 +178,8 @@
   `$ npm run dev`
 
   La aplicación está lista
+
+  La app se lanzará desde `./nodepop/bin/www` 
 
 * ## Notas: ##
 
